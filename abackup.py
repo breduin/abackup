@@ -30,7 +30,10 @@ async def main():
     global status
 
     # Mode says which objects must be archived: DB dump, source files or both.
-    mode=sys.argv[1]
+    try:
+        mode=sys.argv[1]
+    except IndexError:
+        mode = 'all'
 
     # queue of files to be archived
     files_to_upload = deque()
