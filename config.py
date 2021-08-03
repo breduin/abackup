@@ -26,6 +26,10 @@ MAX_ARCHIVES = {
     PREFIX_TAR_FILES: MAX_FILES_ARCHIVES
     }
 
+# Should you be notified about errors by email?
+# If True check EMAIL settings below.
+ERROR_NOTIFICATION_BY_EMAIL = False    
+
 class FTP(Enum):
     """
     Parameters of remote FTP server

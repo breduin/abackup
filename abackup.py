@@ -8,7 +8,7 @@ then uploads the archived files to remote server (another hosting) via ftp.
 import asyncio
 import sys
 from loguru import logger
-from config import FTP, DB
+from config import FTP, DB, ERROR_NOTIFICATION_BY_EMAIL
 from collections import deque
 from make_archive import get_list_of_threads
 from utils import clear_garbage
@@ -60,7 +60,7 @@ async def main():
     clear_garbage(mode=mode, files=tar_names)
 
     # Check the workflow status. If it's not empty, send an error email.
-    if len(status) > 0:
+    if len(status) > 0 and ERROR_NOTIFICATION_BY_EMAIL:
         backup_email()
 
 
