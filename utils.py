@@ -6,20 +6,6 @@ from status import status
 
 
 @logger.catch()
-def get_mode() -> str:
-    """
-    Returns mode in accordance of the argument in command which runs the script.
-    """
-    
-    # Check the argument in command line
-    try:
-        mode = sys.argv[1]
-    except IndexError:
-        mode = 'all'
-    return mode
-
-
-@logger.catch()
 def delete_files(files=[]):
     """
     Deletes files on the server from the list 'files'.
@@ -37,11 +23,10 @@ def delete_files(files=[]):
 
 
 @logger.catch()
-def clear_garbage(files):
+def clear_garbage(mode='all', files=None):
     """
     Removes tar and dump files in accordance with the mode
     """
-    mode = get_mode()
     if files:
         delete_files(files=files)
     if not mode == 'files_only':

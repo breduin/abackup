@@ -1,8 +1,8 @@
 """
 Asynchronuos script to backup a site using aioftp and asyncio.
 
-Calls system command 'tar' to archive the files, dumps database,
-then loads the archive to remote server (another hosting).
+Calls system command 'tar' to archive the files, 'mysqldump' to create database dump,
+then uploads the archived files to remote server (another hosting) via ftp.
 """
 
 import asyncio
@@ -29,12 +29,15 @@ async def main():
     # workflow status
     global status
 
+    # Mode says which objects must be archived: DB dump, source files or both.
+    mode=sys.argv[1]
+
     # queue of files to be archived
     files_to_upload = deque()
     
     logger.trace("Archiving ...")
     # Tasks to archive files and database dump
-    list_of_threads = get_list_of_threads()
+    list_of_threads = get_list_of_threads(mode=mode)
 
     tar_names = await asyncio.gather(*list_of_threads)
 
@@ -54,7 +57,7 @@ async def main():
                                files=files_to_upload)
 
     # Remove archived and dump files on the server site.
-    clear_garbage(tar_names)
+    clear_garbage(mode=mode, files=tar_names)
 
     # Check the workflow status. If it's not empty, send an error email.
     if len(status) > 0:

@@ -10,7 +10,6 @@ from datetime import datetime
 from loguru import logger
 from config import FILES_TO_ARCHIVE, DB, PREFIX_TAR_DB, PREFIX_TAR_FILES, MAX_ARCHIVES
 from time_info import SpbTime
-from utils import get_mode
 from status import status
 
 
@@ -55,10 +54,6 @@ def get_tar_files() -> str:
                 this_method_name = sys._getframe().f_code.co_name
                 status[this_method_name] = False
 
-    if status:
-        logger.success("Files ok!")
-    else:
-        logger.warning("There are problems with files!")
     return archive_name
 
 
@@ -105,11 +100,10 @@ def get_tar_database():
     return archive_name
 
 
-def get_list_of_threads():
+def get_list_of_threads(mode='all'):
     """
     Returns list of threads according to the mode
     """
-    mode = get_mode()
 
     threads = []    
     if mode == 'db_only':
