@@ -15,7 +15,7 @@ def backup_email():
     global status
 
     # Message parameters
-    subject = 'There are errors in ABACKUP at tst.crm-salon.ru!'
+    subject = 'There are errors in ABACKUP!'
     text = 'There are errors in methods listed below. For details see logs. \r\n'
     msg = ("From: %s\r\nTo: %s\r\nSubject: %s\r\n\r\n"
         % (EMAIL.FROM_ADDRESS.value, EMAIL.TO_ADDRESS.value, subject))

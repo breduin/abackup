@@ -16,7 +16,6 @@ from ftp import upload_to_ftp_server
 from abemail import backup_email
 from status import status
 
-#logger.add(sys.stdout, format="{time} {level} {message}", level="TRACE")
 logger.add('logs/main.log', format="{time} {level} {message}", rotation='100Kb', level="INFO")
 
 @logger.catch()
