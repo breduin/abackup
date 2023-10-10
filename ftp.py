@@ -1,10 +1,6 @@
 """
 Asynchronuos ftp-transfer using aioftp.
 """
-<<<<<<< HEAD
-=======
-
->>>>>>> c7f9be07a18b99912cffaf15082ecf450c5e9300
 import aioftp
 import sys
 from loguru import logger
@@ -33,11 +29,7 @@ async def delete_oldest_archive(client, file_type=''):
     if len(files) > MAX_ARCHIVES[file_type]:
         oldest_file = min(files, key=files.get)
         await client.remove(oldest_file)
-<<<<<<< HEAD
         logger.success(f"Oldest archive file {oldest_file} is removed.")
-=======
-        logger.success(f"Oldest arhive file {oldest_file} is removed.")
->>>>>>> c7f9be07a18b99912cffaf15082ecf450c5e9300
         await logger.complete()
 
 
@@ -83,7 +75,3 @@ async def upload_to_ftp_server(host, port, login, password, files):
         logger.error(f"Could not connect to the ftp-server. Expected: {e.expected_codes}, received: {e.received_codes}, info: {e.info}")
         this_method_name = sys._getframe().f_code.co_name
         status[this_method_name] = False
-<<<<<<< HEAD
-=======
-        
->>>>>>> c7f9be07a18b99912cffaf15082ecf450c5e9300
