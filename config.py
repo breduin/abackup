@@ -26,8 +26,8 @@ SITE_NAME = env.str('SITE_NAME')
 
 # Maximum number of archive files
 MAX_ARCHIVES = {
-    PREFIX_TAR_DB: env('MAX_DB_ARCHIVES'),
-    PREFIX_TAR_FILES: env('MAX_FILES_ARCHIVES')
+    PREFIX_TAR_DB: env.int('MAX_DB_ARCHIVES'),
+    PREFIX_TAR_FILES: env.int('MAX_FILES_ARCHIVES')
     }
 
 

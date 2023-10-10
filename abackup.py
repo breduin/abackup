@@ -9,7 +9,7 @@ from loguru import logger
 
 from abemail import backup_email
 from collections import deque
-from config import FTP, LOGS_PATH
+from config import FTP, LOGS_PATH, SITE_NAME
 from ftp import upload_to_ftp_server
 from make_archive import get_list_of_threads
 from status import status
@@ -35,6 +35,7 @@ async def main():
     # queue of files to be archived
     files_to_upload = deque()
 
+    logger.info(f'Backup of {SITE_NAME} database.')
     logger.trace("Archiving ...")
     # Tasks to archive files and database dump
     list_of_threads = get_list_of_threads()
