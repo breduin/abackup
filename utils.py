@@ -15,7 +15,7 @@ def get_mode() -> str:
     try:
         mode = sys.argv[1]
     except IndexError:
-        mode = 'all'
+        mode = 'db_only'
     return mode
 
 

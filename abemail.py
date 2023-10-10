@@ -29,7 +29,7 @@ def backup_email():
         return None
 
     logger.success('Connected to smtp-server, response is ' + ','.join(map(str, server.noop())))
-    
+
     # Login to smtp-server
     try:
         server.login(EMAIL.LOGIN.value, EMAIL.PASSWORD.value)
@@ -39,7 +39,7 @@ def backup_email():
     logger.success('Login to smtp-server ' + ','.join(map(str, server.noop())))
 
     server.set_debuglevel(False)
-    
+
     # Send email
     try:
         server.sendmail(EMAIL.FROM_ADDRESS.value, EMAIL.TO_ADDRESS.value, msg)
@@ -48,12 +48,11 @@ def backup_email():
         return None
     except smtplib.SMTPSenderRefused:
         logger.error(f'From address {EMAIL.FROM_ADDRESS.value} is refused, message is not sent. ' + ','.join(map(str, server.noop())))
-        return None        
+        return None
     except Exception as e:
         logger.error(f'SMTP error {e}, message is not sent. ' + ','.join(map(str, server.noop())))
-        return None        
-    
+        return None
+
     # Close connection
     server.quit()
     logger.success('Error message sent to ' + EMAIL.TO_ADDRESS.value)
-

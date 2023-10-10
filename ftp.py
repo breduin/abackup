@@ -1,7 +1,6 @@
 """
 Asynchronuos ftp-transfer using aioftp.
 """
-
 import aioftp
 import sys
 from loguru import logger
@@ -30,7 +29,7 @@ async def delete_oldest_archive(client, file_type=''):
     if len(files) > MAX_ARCHIVES[file_type]:
         oldest_file = min(files, key=files.get)
         await client.remove(oldest_file)
-        logger.success(f"Oldest arhive file {oldest_file} is removed.")
+        logger.success(f"Oldest archive file {oldest_file} is removed.")
         await logger.complete()
 
 
@@ -76,4 +75,3 @@ async def upload_to_ftp_server(host, port, login, password, files):
         logger.error(f"Could not connect to the ftp-server. Expected: {e.expected_codes}, received: {e.received_codes}, info: {e.info}")
         this_method_name = sys._getframe().f_code.co_name
         status[this_method_name] = False
-        
