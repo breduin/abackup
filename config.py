@@ -13,22 +13,23 @@ env.read_env('.env', recurse=False)
 # Logging path
 LOGS_PATH = 'logs/main.log'
 
+
 # Tuple of files and directories to be archived
 FILES_TO_ARCHIVE = env.list('FILES_TO_ARCHIVE')
+
 
 # Prefix for tar names
 PREFIX_TAR_FILES = env.str('PREFIX_TAR_FILES')
 PREFIX_TAR_DB = env.str('PREFIX_TAR_DB')
 SITE_NAME = env.str('SITE_NAME')
 
-# Maximum number of archive files
-MAX_DB_ARCHIVES = 5
-MAX_FILES_ARCHIVES = 5
 
+# Maximum number of archive files
 MAX_ARCHIVES = {
-    PREFIX_TAR_DB: MAX_DB_ARCHIVES,
-    PREFIX_TAR_FILES: MAX_FILES_ARCHIVES
+    PREFIX_TAR_DB: env('MAX_DB_ARCHIVES'),
+    PREFIX_TAR_FILES: env('MAX_FILES_ARCHIVES')
     }
+
 
 class FTP(Enum):
     """
